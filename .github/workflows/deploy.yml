@@ -1,0 +1,102 @@
+name: Testes e Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ─────────────────────────────────────────────
+  # Job 1: Correr os testes no GitHub Actions
+  # ─────────────────────────────────────────────
+  test:
+    name: Testes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: pdo, pdo_sqlite, pdo_mysql, mbstring, gd, zip, bcmath, intl, exif
+          coverage: none
+
+      - name: Cache das dependências Composer
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+
+      - name: Instalar dependências PHP
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Copiar ficheiro de ambiente
+        run: cp .env.example .env
+
+      - name: Gerar chave da aplicação
+        run: php artisan key:generate
+
+      - name: Correr testes (SQLite em memória)
+        run: php artisan test
+
+  # ─────────────────────────────────────────────
+  # Job 2: Deploy no servidor (só após testes)
+  # Só corre em push para main (não em PRs)
+  # ─────────────────────────────────────────────
+  deploy:
+    name: Deploy Produção
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          DEPLOY_PATH: ${{ secrets.SSH_PATH }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          envs: DEPLOY_PATH
+          script: |
+            set -e
+            cd "$DEPLOY_PATH"
+
+            # Modo manutenção (permite acesso interno com o token)
+            php artisan down --secret="sistur-deploy-secret" || true
+
+            # Atualizar código
+            git pull origin main
+
+            # Dependências PHP (sem pacotes de desenvolvimento)
+            composer install --no-dev --optimize-autoloader --no-interaction
+
+            # Construir os assets do frontend
+            npm ci
+            npm run build
+
+            # Base de dados
+            php artisan migrate --force
+
+            # Caches de produção
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+
+            # Reiniciar workers de filas
+            php artisan queue:restart
+
+            # Garantir symlink do storage
+            php artisan storage:link || true
+
+            # Repor o site online
+            php artisan up
+
+            echo "Deploy concluído com sucesso!"
