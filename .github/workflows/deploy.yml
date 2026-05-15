@@ -55,6 +55,32 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Instalar dependências Node
+        run: npm ci
+
+      - name: Construir assets frontend
+        run: npm run build
+
+      - name: Copiar assets para o servidor
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "public/build"
+          target: ${{ secrets.SSH_WEB_PATH }}
+          strip_components: 1
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         env:
@@ -78,10 +104,6 @@ jobs:
             # Dependências PHP (sem pacotes de desenvolvimento)
             composer install --no-dev --optimize-autoloader --no-interaction
 
-            # Construir os assets do frontend
-            npm ci
-            npm run build
-
             # Base de dados
             php artisan migrate --force
 
@@ -92,9 +114,6 @@ jobs:
 
             # Reiniciar workers de filas
             php artisan queue:restart
-
-            # Garantir symlink do storage
-            php artisan storage:link || true
 
             # Repor o site online
             php artisan up
