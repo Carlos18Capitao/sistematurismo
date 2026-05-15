@@ -42,7 +42,7 @@
                     Turismo em Angola
                 </div>
                 <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                    Descubra a <span class="text-orange-400">Beleza</span><br>
+                    Veja a <span class="text-orange-400">Beleza</span><br>
                     de Angola
                 </h1>
                 <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
