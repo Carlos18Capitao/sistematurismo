@@ -1,6 +1,34 @@
 {
+  "_AdminLayout-CUgMPB12.js": {
+    "file": "assets/AdminLayout-CUgMPB12.js",
+    "name": "AdminLayout",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_AppLayout-D9D_AYG2.js": {
+    "file": "assets/AppLayout-D9D_AYG2.js",
+    "name": "AppLayout",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_GuestLayout-Bhhasnyi.js": {
+    "file": "assets/GuestLayout-Bhhasnyi.js",
+    "name": "GuestLayout",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_TourCard-DHYU8Vqr.js": {
+    "file": "assets/TourCard-DHYU8Vqr.js",
+    "name": "TourCard",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
   "resources/css/app.css": {
-    "file": "assets/app-kIrHPLvy.css",
+    "file": "assets/app-CDxHUHpj.css",
     "name": "app",
     "names": [
       "app.css"
@@ -8,10 +36,226 @@
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/js/Pages/Admin/Bookings/Index.vue": {
+    "file": "assets/Index-USOE9DHd.js",
+    "name": "Index",
+    "src": "resources/js/Pages/Admin/Bookings/Index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AdminLayout-CUgMPB12.js"
+    ]
+  },
+  "resources/js/Pages/Admin/Bookings/Show.vue": {
+    "file": "assets/Show-BKt3I3Px.js",
+    "name": "Show",
+    "src": "resources/js/Pages/Admin/Bookings/Show.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AdminLayout-CUgMPB12.js"
+    ]
+  },
+  "resources/js/Pages/Admin/Dashboard.vue": {
+    "file": "assets/Dashboard-B9CKnd-y.js",
+    "name": "Dashboard",
+    "src": "resources/js/Pages/Admin/Dashboard.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AdminLayout-CUgMPB12.js"
+    ]
+  },
+  "resources/js/Pages/Admin/Reviews/Index.vue": {
+    "file": "assets/Index-Dh2fyr1v.js",
+    "name": "Index",
+    "src": "resources/js/Pages/Admin/Reviews/Index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AdminLayout-CUgMPB12.js"
+    ]
+  },
+  "resources/js/Pages/Admin/Tours/Create.vue": {
+    "file": "assets/Create-CsMpsAuh.js",
+    "name": "Create",
+    "src": "resources/js/Pages/Admin/Tours/Create.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AdminLayout-CUgMPB12.js"
+    ]
+  },
+  "resources/js/Pages/Admin/Tours/Edit.vue": {
+    "file": "assets/Edit-D-Fdrd0V.js",
+    "name": "Edit",
+    "src": "resources/js/Pages/Admin/Tours/Edit.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AdminLayout-CUgMPB12.js"
+    ]
+  },
+  "resources/js/Pages/Admin/Tours/Index.vue": {
+    "file": "assets/Index-B32FzPFq.js",
+    "name": "Index",
+    "src": "resources/js/Pages/Admin/Tours/Index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AdminLayout-CUgMPB12.js"
+    ]
+  },
+  "resources/js/Pages/Auth/ConfirmPassword.vue": {
+    "file": "assets/ConfirmPassword-D0OwVKP9.js",
+    "name": "ConfirmPassword",
+    "src": "resources/js/Pages/Auth/ConfirmPassword.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_GuestLayout-Bhhasnyi.js"
+    ]
+  },
+  "resources/js/Pages/Auth/ForgotPassword.vue": {
+    "file": "assets/ForgotPassword-CJGMuWHJ.js",
+    "name": "ForgotPassword",
+    "src": "resources/js/Pages/Auth/ForgotPassword.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_GuestLayout-Bhhasnyi.js"
+    ]
+  },
+  "resources/js/Pages/Auth/Login.vue": {
+    "file": "assets/Login-50OEGTZm.js",
+    "name": "Login",
+    "src": "resources/js/Pages/Auth/Login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_GuestLayout-Bhhasnyi.js"
+    ]
+  },
+  "resources/js/Pages/Auth/Register.vue": {
+    "file": "assets/Register-BUJHVxGj.js",
+    "name": "Register",
+    "src": "resources/js/Pages/Auth/Register.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_GuestLayout-Bhhasnyi.js"
+    ]
+  },
+  "resources/js/Pages/Auth/ResetPassword.vue": {
+    "file": "assets/ResetPassword-BRYC7O6v.js",
+    "name": "ResetPassword",
+    "src": "resources/js/Pages/Auth/ResetPassword.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_GuestLayout-Bhhasnyi.js"
+    ]
+  },
+  "resources/js/Pages/Auth/VerifyEmail.vue": {
+    "file": "assets/VerifyEmail-BpYv7RQX.js",
+    "name": "VerifyEmail",
+    "src": "resources/js/Pages/Auth/VerifyEmail.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_GuestLayout-Bhhasnyi.js"
+    ]
+  },
+  "resources/js/Pages/Bookings/Index.vue": {
+    "file": "assets/Index-D85cb-SZ.js",
+    "name": "Index",
+    "src": "resources/js/Pages/Bookings/Index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AppLayout-D9D_AYG2.js"
+    ]
+  },
+  "resources/js/Pages/Bookings/Show.vue": {
+    "file": "assets/Show-DEDsGq1F.js",
+    "name": "Show",
+    "src": "resources/js/Pages/Bookings/Show.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AppLayout-D9D_AYG2.js"
+    ]
+  },
+  "resources/js/Pages/Home.vue": {
+    "file": "assets/Home-BCSyyRUf.js",
+    "name": "Home",
+    "src": "resources/js/Pages/Home.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AppLayout-D9D_AYG2.js",
+      "_TourCard-DHYU8Vqr.js"
+    ],
+    "css": [
+      "assets/Home-bIyeX8E8.css"
+    ]
+  },
+  "resources/js/Pages/Profile/Edit.vue": {
+    "file": "assets/Edit-uWMR0QHw.js",
+    "name": "Edit",
+    "src": "resources/js/Pages/Profile/Edit.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AppLayout-D9D_AYG2.js"
+    ]
+  },
+  "resources/js/Pages/Tours/Index.vue": {
+    "file": "assets/Index-WtHitJpd.js",
+    "name": "Index",
+    "src": "resources/js/Pages/Tours/Index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AppLayout-D9D_AYG2.js",
+      "_TourCard-DHYU8Vqr.js"
+    ]
+  },
+  "resources/js/Pages/Tours/Show.vue": {
+    "file": "assets/Show-4sM3HAId.js",
+    "name": "Show",
+    "src": "resources/js/Pages/Tours/Show.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_AppLayout-D9D_AYG2.js"
+    ]
+  },
   "resources/js/app.js": {
-    "file": "assets/app-Dr3ryVLr.js",
+    "file": "assets/app-D45CF_np.js",
     "name": "app",
     "src": "resources/js/app.js",
-    "isEntry": true
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/Admin/Bookings/Index.vue",
+      "resources/js/Pages/Admin/Bookings/Show.vue",
+      "resources/js/Pages/Admin/Dashboard.vue",
+      "resources/js/Pages/Admin/Reviews/Index.vue",
+      "resources/js/Pages/Admin/Tours/Create.vue",
+      "resources/js/Pages/Admin/Tours/Edit.vue",
+      "resources/js/Pages/Admin/Tours/Index.vue",
+      "resources/js/Pages/Auth/ConfirmPassword.vue",
+      "resources/js/Pages/Auth/ForgotPassword.vue",
+      "resources/js/Pages/Auth/Login.vue",
+      "resources/js/Pages/Auth/Register.vue",
+      "resources/js/Pages/Auth/ResetPassword.vue",
+      "resources/js/Pages/Auth/VerifyEmail.vue",
+      "resources/js/Pages/Bookings/Index.vue",
+      "resources/js/Pages/Bookings/Show.vue",
+      "resources/js/Pages/Home.vue",
+      "resources/js/Pages/Profile/Edit.vue",
+      "resources/js/Pages/Tours/Index.vue",
+      "resources/js/Pages/Tours/Show.vue"
+    ]
   }
 }

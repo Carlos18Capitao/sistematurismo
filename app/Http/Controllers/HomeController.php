@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\BookingRepositoryInterface;
 use App\Repositories\Contracts\TourRepositoryInterface;
+use Inertia\Inertia;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,6 @@ class HomeController extends Controller
         $featuredTours = $this->tourRepository->featured(6);
         $cities = $this->tourRepository->cities();
 
-        return view('home', compact('featuredTours', 'cities'));
+        return Inertia::render('Home', compact('featuredTours', 'cities'));
     }
 }

@@ -9,6 +9,7 @@ use App\Models\Tour;
 use App\Repositories\Contracts\TourRepositoryInterface;
 use App\Services\TourService;
 use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
 
 class TourController extends Controller
 {
@@ -21,7 +22,7 @@ class TourController extends Controller
     {
         $tours = Tour::orderByDesc('created_at')->paginate(15);
 
-        return view('admin.tours.index', compact('tours'));
+        return Inertia::render('Admin/Tours/Index', compact('tours'));
     }
 
     public function create()
@@ -30,7 +31,7 @@ class TourController extends Controller
         $difficulties = ['facil', 'moderado', 'dificil'];
         $provinces = $this->provinces();
 
-        return view('admin.tours.create', compact('categories', 'difficulties', 'provinces'));
+        return Inertia::render('Admin/Tours/Create', compact('categories', 'difficulties', 'provinces'));
     }
 
     public function store(StoreTourRequest $request): RedirectResponse
@@ -48,7 +49,7 @@ class TourController extends Controller
         $difficulties = ['facil', 'moderado', 'dificil'];
         $provinces = $this->provinces();
 
-        return view('admin.tours.edit', compact('tour', 'categories', 'difficulties', 'provinces'));
+        return Inertia::render('Admin/Tours/Edit', compact('tour', 'categories', 'difficulties', 'provinces'));
     }
 
     public function update(UpdateTourRequest $request, Tour $tour): RedirectResponse

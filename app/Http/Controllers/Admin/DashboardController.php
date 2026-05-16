@@ -7,6 +7,7 @@ use App\Repositories\Contracts\BookingRepositoryInterface;
 use App\Repositories\Contracts\TourRepositoryInterface;
 use App\Models\User;
 use App\Models\Review;
+use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
@@ -25,9 +26,8 @@ class DashboardController extends Controller
             'revenue'        => \App\Models\Booking::where('payment_status', 'pago')->sum('total_price'),
         ];
 
-        $recentBookings = $this->bookingRepository->paginate(5);
-        $featuredTours = $this->tourRepository->featured(4);
+        $recentBookings = $this->bookingRepository->paginate(5)->items();
 
-        return view('admin.dashboard', compact('stats', 'recentBookings', 'featuredTours'));
+        return Inertia::render('Admin/Dashboard', compact('stats', 'recentBookings'));
     }
 }

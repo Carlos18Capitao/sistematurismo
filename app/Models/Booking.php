@@ -84,6 +84,11 @@ class Booking extends Model
         return $this->status === 'concluido';
     }
 
+    public function getTourDateFormattedAttribute(): string
+    {
+        return $this->tour_date?->format('d/m/Y') ?? '';
+    }
+
     public function getFormattedTotalAttribute(): string
     {
         return number_format($this->total_price, 2, ',', '.') . ' AOA';

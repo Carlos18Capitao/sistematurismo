@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Review;
 use App\Services\ReviewService;
 use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
 
 class ReviewController extends Controller
 {
@@ -23,7 +24,7 @@ class ReviewController extends Controller
             ->paginate(15)
             ->withQueryString();
 
-        return view('admin.reviews.index', compact('reviews', 'status'));
+        return Inertia::render('Admin/Reviews/Index', compact('reviews', 'status'));
     }
 
     public function approve(Review $review): RedirectResponse

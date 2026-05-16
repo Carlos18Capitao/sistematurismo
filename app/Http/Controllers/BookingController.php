@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBookingRequest;
 use App\Repositories\Contracts\BookingRepositoryInterface;
 use App\Services\BookingService;
 use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
 
 class BookingController extends Controller
 {
@@ -18,7 +19,7 @@ class BookingController extends Controller
     {
         $bookings = $this->bookingRepository->forUser(auth()->user());
 
-        return view('bookings.index', compact('bookings'));
+        return Inertia::render('Bookings/Index', compact('bookings'));
     }
 
     public function show(string $reference)
@@ -27,7 +28,7 @@ class BookingController extends Controller
 
         abort_if(!$booking || $booking->user_id !== auth()->id(), 404);
 
-        return view('bookings.show', compact('booking'));
+        return Inertia::render('Bookings/Show', compact('booking'));
     }
 
     public function store(StoreBookingRequest $request): RedirectResponse

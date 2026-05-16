@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Repositories\Contracts\BookingRepositoryInterface;
 use App\Services\BookingService;
 use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
 
 class BookingController extends Controller
 {
@@ -20,14 +21,14 @@ class BookingController extends Controller
         $filters = request()->only(['status', 'search']);
         $bookings = $this->bookingRepository->paginate(15, $filters);
 
-        return view('admin.bookings.index', compact('bookings', 'filters'));
+        return Inertia::render('Admin/Bookings/Index', compact('bookings', 'filters'));
     }
 
     public function show(Booking $booking)
     {
         $booking->load(['user', 'tour', 'review']);
 
-        return view('admin.bookings.show', compact('booking'));
+        return Inertia::render('Admin/Bookings/Show', compact('booking'));
     }
 
     public function confirm(Booking $booking): RedirectResponse

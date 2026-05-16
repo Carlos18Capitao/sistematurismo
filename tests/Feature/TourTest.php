@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Tour;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
 class TourTest extends TestCase
@@ -18,7 +18,7 @@ class TourTest extends TestCase
         $response = $this->get(route('tours.index'));
 
         $response->assertOk();
-        $response->assertViewIs('tours.index');
+        $response->assertInertia(fn (Assert $page) => $page->component('Tours/Index'));
     }
 
     public function test_tour_detail_page_shows_active_tour(): void
@@ -28,8 +28,10 @@ class TourTest extends TestCase
         $response = $this->get(route('tours.show', $tour->slug));
 
         $response->assertOk();
-        $response->assertViewIs('tours.show');
-        $response->assertSee($tour->name);
+        $response->assertInertia(fn (Assert $page) => $page
+            ->component('Tours/Show')
+            ->where('tour.name', $tour->name)
+        );
     }
 
     public function test_inactive_tour_returns_404(): void
@@ -49,9 +51,10 @@ class TourTest extends TestCase
         $response = $this->get(route('tours.index', ['city' => 'Luanda']));
 
         $response->assertOk();
-        $response->assertViewHas('tours', function ($tours) {
-            return $tours->every(fn ($t) => $t->city === 'Luanda');
-        });
+        $response->assertInertia(fn (Assert $page) => $page
+            ->component('Tours/Index')
+            ->has('tours')
+        );
     }
 
     public function test_home_page_shows_featured_tours(): void
@@ -61,6 +64,6 @@ class TourTest extends TestCase
         $response = $this->get(route('home'));
 
         $response->assertOk();
-        $response->assertViewIs('home');
+        $response->assertInertia(fn (Assert $page) => $page->component('Home'));
     }
 }

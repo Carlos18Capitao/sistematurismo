@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\TourRepositoryInterface;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TourController extends Controller
 {
@@ -18,7 +19,7 @@ class TourController extends Controller
         $cities = $this->tourRepository->cities();
         $categories = ['aventura', 'cultural', 'natureza', 'gastronomia', 'praia', 'safari', 'historico'];
 
-        return view('tours.index', compact('tours', 'cities', 'categories', 'filters'));
+        return Inertia::render('Tours/Index', compact('tours', 'cities', 'categories', 'filters'));
     }
 
     public function show(string $slug)
@@ -27,6 +28,6 @@ class TourController extends Controller
 
         abort_if(!$tour || !$tour->is_active, 404);
 
-        return view('tours.show', compact('tour'));
+        return Inertia::render('Tours/Show', compact('tour'));
     }
 }
