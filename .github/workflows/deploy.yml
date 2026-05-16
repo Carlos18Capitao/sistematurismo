@@ -116,6 +116,9 @@ jobs:
             # Restaurar .env de produção (não deve ser sobrescrito pelo git)
             [ -f /tmp/.env.sistur.bak ] && mv /tmp/.env.sistur.bak .env
 
+            # Remover hot file do Vite (faria o Laravel usar o dev server em vez dos assets)
+            rm -f public/hot
+
             # Dependências PHP (sem pacotes de desenvolvimento)
             composer install --no-dev --optimize-autoloader --no-interaction
 
