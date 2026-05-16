@@ -106,8 +106,9 @@ jobs:
             # Modo manutenção (permite acesso interno com o token)
             php artisan down --secret="sistur-deploy-secret" || true
 
-            # Atualizar código
-            git pull origin main
+            # Atualizar código (reset hard para evitar conflitos com vendor/ modificado pelo composer)
+            git fetch origin main
+            git reset --hard origin/main
 
             # Dependências PHP (sem pacotes de desenvolvimento)
             composer install --no-dev --optimize-autoloader --no-interaction
