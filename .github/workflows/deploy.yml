@@ -85,12 +85,13 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         env:
           DEPLOY_PATH: ${{ secrets.SSH_PATH }}
+          WEB_PATH: ${{ secrets.SSH_WEB_PATH }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          envs: DEPLOY_PATH
+          envs: DEPLOY_PATH,WEB_PATH
           script: |
             set -e
 
@@ -118,6 +119,9 @@ jobs:
 
             # Remover hot file do Vite (faria o Laravel usar o dev server em vez dos assets)
             rm -f public/hot
+
+            # Copiar assets do build para o web root (DreamHost não permite symlinks)
+            rsync -a --delete "$DEPLOY_PATH/public/build/" "$WEB_PATH/build/"
 
             # Dependências PHP (sem pacotes de desenvolvimento)
             composer install --no-dev --optimize-autoloader --no-interaction

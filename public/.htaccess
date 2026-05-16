@@ -5,6 +5,11 @@
 
     RewriteEngine On
 
+    # Canonical host + HTTPS
+    RewriteCond %{HTTP_HOST} !^www\.cc-computacao\.com$ [NC,OR]
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://www.cc-computacao.com%{REQUEST_URI} [L,R=301]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
