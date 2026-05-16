@@ -106,9 +106,15 @@ jobs:
             # Modo manutenção (permite acesso interno com o token)
             php artisan down --secret="sistur-deploy-secret" || true
 
+            # Proteger .env de produção antes do reset
+            [ -f .env ] && cp .env /tmp/.env.sistur.bak
+
             # Atualizar código (reset hard para evitar conflitos com vendor/ modificado pelo composer)
             git fetch origin main
             git reset --hard origin/main
+
+            # Restaurar .env de produção (não deve ser sobrescrito pelo git)
+            [ -f /tmp/.env.sistur.bak ] && mv /tmp/.env.sistur.bak .env
 
             # Dependências PHP (sem pacotes de desenvolvimento)
             composer install --no-dev --optimize-autoloader --no-interaction
