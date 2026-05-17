@@ -120,8 +120,18 @@ jobs:
             # Remover hot file do Vite (faria o Laravel usar o dev server em vez dos assets)
             rm -f public/hot
 
+            # Validar que o secret SSH_WEB_PATH está configurado
+            if [ -z "$WEB_PATH" ]; then
+              echo "ERRO: o secret SSH_WEB_PATH não está configurado no GitHub → vá a Settings > Secrets and variables > Actions"
+              exit 1
+            fi
+
+            # Garantir que o directório de destino existe
+            mkdir -p "$WEB_PATH/build"
+
             # Copiar assets do build para o web root (DreamHost não permite symlinks)
-            rsync -a --delete "$DEPLOY_PATH/public/build/" "$WEB_PATH/build/"
+            rsync -av --delete "$DEPLOY_PATH/public/build/" "$WEB_PATH/build/"
+            echo "✓ Assets copiados para $WEB_PATH/build/ ($(ls "$WEB_PATH/build/" | wc -l) entradas)"
 
             # Dependências PHP (sem pacotes de desenvolvimento)
             composer install --no-dev --optimize-autoloader --no-interaction
