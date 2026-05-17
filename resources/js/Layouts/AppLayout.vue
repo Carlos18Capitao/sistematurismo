@@ -25,8 +25,6 @@ onUnmounted(() => document.removeEventListener('click', closeDropdown));
 
 <template>
     <div class="min-h-full bg-gray-50 text-gray-900 font-sans antialiased">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
         <!-- Navbar -->
         <nav class="bg-white shadow-sm sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

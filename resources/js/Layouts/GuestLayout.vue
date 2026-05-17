@@ -4,8 +4,6 @@ import { Link } from '@inertiajs/vue3';
 
 <template>
     <div class="min-h-screen flex flex-col justify-center items-center px-4 py-8 bg-gradient-to-br from-orange-50 via-white to-orange-50 font-sans text-gray-900 antialiased">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
         <div class="mb-6">
             <Link href="/" class="flex flex-col items-center gap-3">
                 <img :src="'/images/Sistur-logo.png'" alt="Sistur" class="h-16">

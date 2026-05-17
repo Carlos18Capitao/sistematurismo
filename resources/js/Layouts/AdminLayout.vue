@@ -25,8 +25,6 @@ function logout() {
 
 <template>
     <div class="flex h-screen overflow-hidden bg-gray-100 font-sans antialiased">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
         <!-- Sidebar -->
         <aside class="w-64 bg-gray-900 text-white flex-shrink-0 hidden md:flex flex-col">
             <div class="p-5 border-b border-gray-700">
